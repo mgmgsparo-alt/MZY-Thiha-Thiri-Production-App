@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="my" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yangon TikTok Production - Marketing & AI Studio</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome & Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Padauk:wght@400;700&display=swap">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Padauk', 'Plus Jakarta Sans', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'Padauk', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              red: '#ff004f',
+              cyan: '#00f2fe',
+              blue: '#2563eb',
+              dark: '#080c15',
+              card: '#0f172a',
+              border: '#1e293b'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #080c15;
+      color: #f8fafc;
+      font-family: 'Padauk', 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+    .scrollbar-thin::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 9999px;
+    }
+    .scrollbar-thin::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    .slide-fade {
+      animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-[#080c15]">
+
+  <!-- Header / Navigation Bar matching reference UI -->
+  <header class="sticky top-0 z-50 bg-[#0d1424]/95 backdrop-blur-md border-b border-slate-800/80 px-4 md:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-amber-400 flex items-center justify-center text-slate-950 font-black shadow-lg shadow-amber-400/20 text-xl">
+        <i class="fa-solid fa-video"></i>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <h1 class="font-bold text-base md:text-lg text-white font-display tracking-tight">TikTok Production Studio</h1>
+          <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs px-2 py-0.5 rounded-full font-semibold flex items-center gap-1">
+            <i class="fa-solid fa-bolt text-[10px]"></i> AI Assistant Pro
+          </span>
+        </div>
+        <p class="text-xs text-slate-400">ရန်ကုန်မြို့အတွက် အထူးပြု Content Marketing &amp; AI Generator</p>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs (Strategy, Calendar, AI Content Lab) -->
+    <nav class="flex items-center gap-1.5 bg-slate-900/90 border border-slate-800 p-1.5 rounded-xl shadow-inner">
+      <button id="tab-strategy" onclick="switchPage('strategy')" class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 bg-blue-600 text-white shadow-sm">
+        <i class="fa-solid fa-compass"></i>
+        <span>Strategy</span>
+      </button>
+      <button id="tab-calendar" onclick="switchPage('calendar')" class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-300 hover:text-white hover:bg-slate-800/60">
+        <i class="fa-regular fa-calendar-days"></i>
+        <span>Calendar</span>
+      </button>
+      <button id="tab-lab" onclick="switchPage('lab')" class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-300 hover:text-white hover:bg-slate-800/60">
+        <i class="fa-solid fa-flask text-pink-400"></i>
+        <span>AI Content Lab</span>
+        <span class="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 lg:p-8">
+
+    <!-- PAGE 1: STRATEGY PRESENTATION -->
+    <section id="page-strategy" class="space-y-6">
+      <!-- Strategy Header with Slider Controls -->
+      <div class="bg-[#111827]/80 border border-slate-800 rounded-2xl p-4 md:p-5 flex flex-wrap items-center justify-between gap-4 backdrop-blur-sm">
+        <div>
+          <div class="flex items-center gap-2 text-amber-400 text-sm font-bold tracking-wide uppercase mb-1">
+            <i class="fa-solid fa-lightbulb"></i>
+            <span>Marketing Strategy Presentation</span>
+          </div>
+          <p class="text-sm md:text-base text-slate-300 font-medium">
+            TikTok Production Agency အတွက် Street Q&A နှင့် Native Placement မဟာဗျူဟာ (Slide ၇ ခု)
+          </p>
+        </div>
+        <div class="flex items-center gap-3">
+          <button onclick="prevSlide()" class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 text-slate-200 flex items-center justify-center transition-all border border-slate-700/60" title="Previous Slide">
+            <i class="fa-solid fa-chevron-left text-sm"></i>
+          </button>
+          <div class="bg-slate-950 border border-slate-800 px-4 py-2 rounded-xl text-xs md:text-sm font-semibold text-slate-200 font-display min-w-[95px] text-center">
+            Slide <span id="current-slide-num" class="text-blue-400 font-bold">1</span> / 7
+          </div>
+          <button onclick="nextSlide()" class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 text-slate-200 flex items-center justify-center transition-all border border-slate-700/60" title="Next Slide">
+            <i class="fa-solid fa-chevron-right text-sm"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Slide Container (Blue-Themed Container matching UI photo) -->
+      <div class="relative w-full rounded-2xl border border-blue-900/40 overflow-hidden bg-gradient-to-b from-[#102447] via-[#0b162e] to-[#070b14] shadow-2xl min-h-[550px] flex items-center justify-center p-6 md:p-12">
+
+        <!-- Slide 1: Cover -->
+        <div id="slide-1" class="slide-item slide-fade w-full">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-950/60 border border-blue-500/30 text-amber-400 text-xs font-bold uppercase tracking-widest mb-6">
+            <i class="fa-solid fa-flag"></i> မိတ်ဆက်
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-8 space-y-4">
+              <div class="flex items-center gap-3">
+                <span class="text-3xl text-amber-400"><i class="fa-solid fa-video"></i></span>
+                <h2 class="text-2xl md:text-4xl lg:text-5xl font-black text-white font-display tracking-tight leading-tight">
+                  TikTok Content Marketing Strategy
+                </h2>
+              </div>
+              <p class="text-sm md:text-base text-cyan-300 font-medium">
+                Street Q&A, Mini-games & Native Product Placement Agency
+              </p>
+              <h3 class="text-xl md:text-3xl font-extrabold text-amber-400 leading-snug">
+                ရန်ကုန်မြို့အခြေစိုက် Production House မဟာဗျူဟာ
+              </h3>
+              <p class="text-sm md:text-base text-slate-300 leading-relaxed max-w-2xl">
+                လူငယ်ကြိုက် Street Q&A၊ Mini-games များနှင့် Trend-based ဖျော်ဖြေရေး Content များမှတစ်ဆင့် Brand/Product များကို သဘာဝကျကျ (Native Ads) ကြော်ညာပေးနိုင်မည့် Production ဖွဲ့စည်းမှုနှင့် ရက် ၃၀ လုပ်ငန်းစဉ်။
+              </p>
+            </div>
+            <div class="lg:col-span-4 flex justify-center">
+              <div class="w-48 h-48 md:w-56 md:h-56 rounded-3xl bg-slate-900/90 border-2 border-amber-400/40 flex flex-col items-center justify-center p-6 text-center shadow-xl">
+                <div class="text-5xl text-amber-400 mb-3">
+                  <i class="fa-solid fa-people-group"></i>
+                </div>
+                <div class="text-base font-bold text-white">B2B & B2C Audience</div>
+                <div class="text-xs text-slate-400 mt-1">ကြော်ညာအပ်သူနှင့် ကြည့်ရှုသူ နှစ်ရပ်လုံးအတွက်</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2: Customer Journey -->
+        <div id="slide-2" class="slide-item slide-fade hidden w-full">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-950/60 border border-blue-500/30 text-amber-400 text-xs font-bold uppercase tracking-widest mb-4">
+            <i class="fa-solid fa-map-location-dot"></i> Customer Journey
+          </div>
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-amber-400 text-2xl md:text-3xl"><i class="fa-solid fa-users-viewfinder"></i></span>
+            <h2 class="text-2xl md:text-4xl font-extrabold text-white">
+              Customer Journey အဆင့် ၄ ဆင့်
+            </h2>
+          </div>
+          <p class="text-xs md:text-sm text-cyan-300 mb-6">Audience Lifecycle & B2B Client Acquisition Funnel</p>
+
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 hover:border-pink-500/50 transition-all">
+              <div class="w-8 h-8 rounded-full bg-pink-500 text-white font-bold text-sm flex items-center justify-center mb-3">1</div>
+              <h3 class="text-lg font-bold text-white mb-2">Awareness</h3>
+              <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+                ရန်ကုန်လူစည်ကားရာ နေရာများတွင် ရယ်စရာ Q&A၊ Hook ကောင်းကောင်းများဖြင့် Follower အမြန်တက်စေရန် ဖန်တီးခြင်း။
+              </p>
+            </div>
+            <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 hover:border-cyan-400/50 transition-all">
+              <div class="w-8 h-8 rounded-full bg-cyan-500 text-slate-950 font-bold text-sm flex items-center justify-center mb-3">2</div>
+              <h3 class="text-lg font-bold text-white mb-2">Interest</h3>
+              <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+                Mini-game စိန်ခေါ်မှုများ၊ ဆုကြေးပေးခြင်းများဖြင့် Engagement မြှင့်တင်ပြီး Brand များကို စတင်မိတ်ဆက်ခြင်း။
+              </p>
+            </div>
+            <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 hover:border-purple-400/50 transition-all">
+              <div class="w-8 h-8 rounded-full bg-purple-500 text-white font-bold text-sm flex items-center justify-center mb-3">3</div>
+              <h3 class="text-lg font-bold text-white mb-2">Conversion</h3>
+              <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+                Full-sponsored Native Ads များထည့်သွင်းခြင်း၊ Product ကို ဆုအဖြစ်ပေးခြင်းဖြင့် Client များကို ကြော်ညာပေးခြင်း။
+              </p>
+            </div>
+            <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 hover:border-emerald-400/50 transition-all">
+              <div class="w-8 h-8 rounded-full bg-emerald-500 text-slate-950 font-bold text-sm flex items-center justify-center mb-3">4</div>
+              <h3 class="text-lg font-bold text-white mb-2">Advocacy</h3>
+              <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+                Travel Vlog များ၊ Community-driven အစီအစဉ်များဖြင့် အခြားမြို့များသို့ပါ ရေရှည် Brand ယုံကြည်မှု ချဲ့ထွင်ခြင်း။
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3: Content Pillars -->
+        <div id="slide-3" class="slide-item slide-fade hidden w-full">
+          <div class="text-center max-w-2xl mx-auto mb-6">
+            <span class="text-xs font-bold uppercase tracking-widest text-pink-400 bg-pink-950/40 border border-pink-800/40 px-3 py-1 rounded-full">Pillars</span>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-white mt-2">အဓိက Content အမျိုးအစား ၄ မျိုး</h2>
+            <p class="text-xs md:text-sm text-slate-300 mt-1">ပရိသတ်ကို ဆွဲဆောင်ရန် အချိုးကျဖွဲ့စည်းထားသော Content Ratio</p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 hover:border-pink-500/50 transition-all">
+              <div class="w-12 h-12 rounded-xl bg-pink-500/10 text-pink-400 flex items-center justify-center text-xl mb-4">
+                <i class="fa-solid fa-microphone-lines"></i>
+              </div>
+              <span class="text-xs font-bold text-pink-400">၄၀% Ratio</span>
+              <h3 class="text-lg font-bold text-white mt-1 mb-2">Street Q&amp;A</h3>
+              <p class="text-xs md:text-sm text-slate-400 leading-relaxed">ရယ်စရာ အချစ်ရေး၊ ကျောင်းသားဘဝ၊ လူငယ် Lifestyle မေးခွန်းများ။</p>
+            </div>
+            <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 hover:border-cyan-400/50 transition-all">
+              <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl mb-4">
+                <i class="fa-solid fa-gamepad"></i>
+              </div>
+              <span class="text-xs font-bold text-cyan-400">၃၀% Ratio</span>
+              <h3 class="text-lg font-bold text-white mt-1 mb-2">Mini-games</h3>
+              <p class="text-xs md:text-sm text-slate-400 leading-relaxed">ဆုကြေး/လက်ဆောင်ပါသော မြန်မြန်ဆန်ဆန် ပြီးပြတ်သည့် ဂိမ်းတိုလေးများ။</p>
+            </div>
+            <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 hover:border-purple-400/50 transition-all">
+              <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl mb-4">
+                <i class="fa-solid fa-bullhorn"></i>
+              </div>
+              <span class="text-xs font-bold text-purple-400">၂၀% Ratio</span>
+              <h3 class="text-lg font-bold text-white mt-1 mb-2">Product Integration</h3>
+              <p class="text-xs md:text-sm text-slate-400 leading-relaxed">အချိုရည်၊ အဝတ်အထည်၊ စားစရာ၊ Skincare စသည်တို့ကို ဂိမ်းဆုအဖြစ် ထည့်သွင်းခြင်း။</p>
+            </div>
+            <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 hover:border-emerald-400/50 transition-all">
+              <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-4">
+                <i class="fa-solid fa-city"></i>
+              </div>
+              <span class="text-xs font-bold text-emerald-400">၁၀% Ratio</span>
+              <h3 class="text-lg font-bold text-white mt-1 mb-2">Yangon Vibes & Travel</h3>
+              <p class="text-xs md:text-sm text-slate-400 leading-relaxed">Trend ဖြစ်နေသည့် Cafe၊ Night Market များနှင့် နယ်လှည့် Vlog ခရီးစဉ်များ။</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 4: Awareness & Interest Tactics -->
+        <div id="slide-4" class="slide-item slide-fade hidden w-full">
+          <div class="mb-6">
+            <span class="text-xs font-bold uppercase tracking-widest text-blue-400 bg-blue-950/40 border border-blue-800/40 px-3 py-1 rounded-full">Phase 1 & 2</span>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-white mt-2">Awareness & Interest တည်ဆောက်ခြင်း</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-xl"><i class="fa-solid fa-eye"></i></div>
+                <h3 class="font-bold text-xl text-white">Awareness (အသိပေးခြင်း)</h3>
+              </div>
+              <ul class="space-y-3 text-sm text-slate-300">
+                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-blue-400 mt-1"></i> <span>ရည်ရွယ်ချက်: Follower အခြေခံ အမြန်တက်စေရန်နှင့် လူသိများစေရန်။</span></li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-blue-400 mt-1"></i> <span>တည်နေရာ: လှည်းတန်း၊ မဟာဗန္ဓုလပန်းခြံ၊ မြေနီကုန်း၊ Time City များ။</span></li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-blue-400 mt-1"></i> <span>ဥပမာ: "ဒီနေ့ ရည်းစားစကားပြောဖူးလား?", "ဒီမေးခွန်းဖြေနိုင်ရင် ကျပ် ၁ သောင်းရမယ်" စသည့် Hook များသုံးခြင်း။</span></li>
+              </ul>
+            </div>
+            <div class="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xl"><i class="fa-solid fa-heart"></i></div>
+                <h3 class="font-bold text-xl text-white">Interest (စိတ်ဝင်စားမှုရယူခြင်း)</h3>
+              </div>
+              <ul class="space-y-3 text-sm text-slate-300">
+                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-cyan-400 mt-1"></i> <span>ရည်ရွယ်ချက်: Engagement ကောင်းအောင်လုပ်ခြင်း၊ Brand အကြံဉာဏ်များ ပြသခြင်း။</span></li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-cyan-400 mt-1"></i> <span>ဥပမာ: မျက်စိမှိတ် အချိုရည် အရသာခန့်မှန်းခြင်း၊ ၃ စက္ကန့်အတွင်း Product အမည်ပြောခြင်း။</span></li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-cyan-400 mt-1"></i> <span>Soft Mention: ဗီဒီယိုအဆုံးတွင် "ဒီဗီဒီယိုကို Sponsor ပေးထားတာကတော့..." ထည့်သွင်းခြင်း။</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 5: Conversion & Monetization -->
+        <div id="slide-5" class="slide-item slide-fade hidden w-full">
+          <div class="mb-4 flex justify-between items-center">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-widest text-emerald-400 bg-emerald-950/40 border border-emerald-800/40 px-3 py-1 rounded-full">Phase 3 & 4</span>
+              <h2 class="text-2xl md:text-3xl font-extrabold text-white mt-1">Conversion & Advocacy ချဲ့ထွင်ခြင်း</h2>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl"><i class="fa-solid fa-sack-dollar"></i></div>
+                <h3 class="font-bold text-xl text-white">Conversion (Sponsor ရယူခြင်း)</h3>
+              </div>
+              <ul class="space-y-3 text-sm text-slate-300">
+                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-purple-400 mt-1"></i> <span>ရည်ရွယ်ချက်: Brand များကို Client အဖြစ် ရောက်ရှိလာစေရန် အသွင်ပြောင်းခြင်း။</span></li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-purple-400 mt-1"></i> <span>Native Ads: ဂိမ်းဆော့ရင်း Brand Product ကို ဆုအဖြစ်ပေးခြင်း၊ Q&A ထဲတွင် Product အကြောင်း မေးခွန်းထည့်ခြင်း။</span></li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-purple-400 mt-1"></i> <span>CTA: Bio Link တွင် Business Inquiry (Telegram/Viber) ထင်ရှားစွာ ထားရှိခြင်း။</span></li>
+              </ul>
+            </div>
+            <div class="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl"><i class="fa-solid fa-route"></i></div>
+                <h3 class="font-bold text-xl text-white">Advocacy (ရေရှည်ချဲ့ထွင်ခြင်း)</h3>
+              </div>
+              <ul class="space-y-3 text-sm text-slate-300">
+                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> <span>ရည်ရွယ်ချက်: Q&A အပြင် Travel Vlog များနှင့် နယ်မြို့ခရီးစဉ်များအထိ ချဲ့ထွင်ခြင်း။</span></li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> <span>နယ်လှည့် Vlog: ရန်ကုန်အပြင် မန္တလေး၊ ပြင်ဦးလွင် သို့ သွားရောက်ပြီး Travel Q&A Challenge များ ပြုလုပ်ခြင်း။</span></li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> <span>Multi-platform: TikTok သာမက Facebook Reels နှင့် YouTube Shorts များသို့ ချဲ့ထွင်ခြင်း။</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 6: Production Rules -->
+        <div id="slide-6" class="slide-item slide-fade hidden w-full">
+          <div class="mb-6">
+            <span class="text-xs font-bold uppercase tracking-widest text-amber-400 bg-amber-950/40 border border-amber-800/40 px-3 py-1 rounded-full">Execution Rules</span>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-white mt-2">ရိုက်ကူးရေး စည်းမျဉ်းနှင့် Native Placement Tactics</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-red-950/20 border border-red-800/40 rounded-2xl p-6">
+              <div class="flex items-center gap-2 text-red-400 font-bold text-lg mb-3">
+                <i class="fa-solid fa-camera"></i>
+                <span>Equipment & Legal Ethics</span>
+              </div>
+              <ul class="space-y-3 text-sm text-slate-300">
+                <li class="flex items-start gap-2">
+                  <i class="fa-solid fa-caret-right text-red-400 mt-1"></i>
+                  <span><b>Wireless Mic အရေးကြီး:</b> လမ်းပေါ်တွင် လေဆူသံနှင့် ကားသံများရှင်းရန် DJI သို့မဟုတ် Boya/Rode မိုက်များ မဖြစ်မနေသုံးပါ။</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i class="fa-solid fa-caret-right text-red-400 mt-1"></i>
+                  <span><b>Verbal Consent:</b> လမ်းသွားလမ်းလာများအား ရိုက်ကူးခွင့် အရင်တောင်းပါ။ ဗီဒီယို မပါချင်သူများကို ချက်ချင်းကျော်ပါ။</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i class="fa-solid fa-caret-right text-red-400 mt-1"></i>
+                  <span><b>နေရာထိုင်ခင်း:</b> အများပြည်သူနှင့် သက်ဆိုင်သော နေရာများတွင် လူအသွားအလာ မပိတ်ဆို့စေရန် ဂရုပြုပါ။</span>
+                </li>
+              </ul>
+            </div>
+            <div class="bg-emerald-950/20 border border-emerald-800/40 rounded-2xl p-6">
+              <div class="flex items-center gap-2 text-emerald-400 font-bold text-lg mb-3">
+                <i class="fa-solid fa-check"></i>
+                <span>သဘာဝကျသော Native Placement</span>
+              </div>
+              <ul class="space-y-3 text-sm text-slate-300">
+                <li class="flex items-start gap-2">
+                  <i class="fa-solid fa-check text-emerald-400 mt-1"></i>
+                  <span><b>ဆုကြေးအဖြစ် ထည့်သွင်းခြင်း:</b> "ဒီမေးခွန်း ဖြေနိုင်ရင် [Brand Name] ရဲ့ Gift Box / Voucher ရမယ်!"</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i class="fa-solid fa-check text-emerald-400 mt-1"></i>
+                  <span><b>ဂိမ်း၏ အဓိက အစိတ်အပိုင်းအဖြစ် သုံးခြင်း:</b> အချိုရည်ဆိုပါက Blind Tasting၊ အလှကုန်ဆိုပါက Makeup Challenge စသဖြင့် ဆော့ကစားခြင်း။</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 7: Closing / Next Action -->
+        <div id="slide-7" class="slide-item slide-fade hidden w-full text-center flex flex-col items-center justify-center">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-pink-500 to-cyan-400 flex items-center justify-center text-white text-2xl mb-4 shadow-xl">
+            <i class="fa-solid fa-rocket"></i>
+          </div>
+          <span class="text-xs font-bold uppercase tracking-widest text-[#00f2fe] bg-cyan-950/40 border border-cyan-800/40 px-3 py-1 rounded-full mb-3">
+            Next Action
+          </span>
+          <h2 class="text-3xl md:text-5xl font-black text-white font-display mb-3">
+            ရက် ၃၀ Calendar ကို စတင်ကြမည်လား?
+          </h2>
+          <p class="text-base text-slate-300 max-w-xl mb-6">
+            Calendar Tab တွင် ရက် ၃၀ လုံးအတွက် Content Plan ကိုကြည့်ရှုနိုင်ပြီး AI Content Lab တွင် Client Brand များအတွက် စိတ်ကြိုက် Script များကို ချက်ချင်းဖန်တီးနိုင်ပါသည်။
+          </p>
+          <div class="flex items-center justify-center gap-4">
+            <button onclick="switchPage('calendar')" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm shadow-lg border border-slate-700 flex items-center gap-2">
+              <i class="fa-regular fa-calendar"></i> Calendar သို့
+            </button>
+            <button onclick="switchPage('lab')" class="px-6 py-3 rounded-xl bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-600 hover:to-rose-700 text-white font-bold text-sm shadow-lg shadow-pink-500/20 flex items-center gap-2">
+              <i class="fa-solid fa-flask"></i> AI Lab သို့
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PAGE 2: 30-DAY CONTENT CALENDAR -->
+    <section id="page-calendar" class="hidden space-y-6">
+      <div class="bg-[#111827]/80 border border-slate-800 rounded-2xl p-5 backdrop-blur-sm flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h2 class="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
+            <i class="fa-regular fa-calendar-check text-blue-400"></i>
+            <span>ရက် ၃၀ TikTok Content Marketing Calendar (Yangon)</span>
+          </h2>
+          <p class="text-xs md:text-sm text-slate-400 mt-1">
+            နေ့စဉ်တင်ဆက်မှု အစီအစဉ်၊ အဆင့် (Funnel)၊ တည်နေရာနှင့် Brand ရိုက်ကူးမှု အကြံပြုချက်များ
+          </p>
+        </div>
+        <div class="flex items-center gap-2 text-xs bg-slate-950 border border-slate-800 px-3 py-2 rounded-xl text-slate-300">
+          <i class="fa-regular fa-clock text-amber-400"></i> Peak Hours: နေ့လယ် ၁၂:၀၀ - ၁:၃၀ | ညနေ ၆:၀၀ - ၈:၃၀
+        </div>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="flex flex-wrap items-center gap-2" id="calendar-filters">
+        <button onclick="filterCalendar('all')" class="cal-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-600 text-white" data-filter="all">အားလုံး (30 Days)</button>
+        <button onclick="filterCalendar('Awareness')" class="cal-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-800 text-slate-400 hover:text-white" data-filter="Awareness">Awareness (အသိပေး)</button>
+        <button onclick="filterCalendar('Interest')" class="cal-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-800 text-slate-400 hover:text-white" data-filter="Interest">Interest (ဂိမ်းများ)</button>
+        <button onclick="filterCalendar('Conversion')" class="cal-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-800 text-slate-400 hover:text-white" data-filter="Conversion">Conversion (Brand Sponsor)</button>
+        <button onclick="filterCalendar('Advocacy')" class="cal-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-800 text-slate-400 hover:text-white" data-filter="Advocacy">Advocacy &amp; Expansion</button>
+      </div>
+
+      <!-- Calendar Grid / Cards Container -->
+      <div id="calendar-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Javascript will populate calendar rows -->
+      </div>
+    </section>
+
+    <!-- PAGE 3: AI CONTENT LAB (GENERATOR) -->
+    <section id="page-lab" class="hidden space-y-6">
+      <div class="bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 border border-indigo-900/40 rounded-2xl p-6 backdrop-blur-sm relative overflow-hidden">
+        <div class="relative z-10 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-8 h-8 rounded-lg bg-pink-500/20 text-pink-400 border border-pink-500/30 flex items-center justify-center text-sm">
+                <i class="fa-solid fa-flask"></i>
+              </span>
+              <h2 class="text-xl md:text-2xl font-black text-white font-display">AI Content Lab</h2>
+              <span class="text-xs bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 px-2.5 py-0.5 rounded-full font-semibold">Gemini Flash AI</span>
+            </div>
+            <p class="text-xs md:text-sm text-slate-300 max-w-2xl leading-relaxed">
+              သင့် Brand သို့မဟုတ် Product အမည်ရိုက်ထည့်ရုံဖြင့် ရန်ကုန်မြို့တွင်း Street Q&amp;A မေးခွန်း၊ Mini-game စိန်ခေါ်မှု၊ 3-Second Viral Hook နှင့် Script အပြည့်အစုံကို AI ဖြင့် ချက်ချင်းထုတ်ယူပါ။
+            </p>
+          </div>
+          <div class="flex items-center gap-2 text-xs bg-slate-950/80 border border-slate-800 px-3.5 py-2 rounded-xl text-slate-300">
+            <i class="fa-solid fa-sparkles text-amber-400"></i> Interactive Script Engine
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <!-- Input Form (Left 5 Cols) -->
+        <div class="lg:col-span-5 bg-slate-900/90 border border-slate-800 rounded-2xl p-5 space-y-4">
+          <h3 class="font-bold text-base text-white flex items-center gap-2">
+            <i class="fa-solid fa-sliders text-pink-500"></i>
+            <span>Campaign Parameters</span>
+          </h3>
+
+          <!-- Product Name Input -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Product သို့မဟုတ် လုပ်ငန်းအမည်</label>
+            <input id="ai-product-name" type="text" value="Bubble Tea / Milk Tea" placeholder="ဥပမာ- စားသောက်ဆိုင်၊ Skincare၊ ဖက်ရှင်..." class="w-full bg-slate-950 border border-slate-700/80 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-pink-500 transition-colors">
+          </div>
+
+          <!-- Product Category Dropdown -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Product Category</label>
+            <select id="ai-category" class="w-full bg-slate-950 border border-slate-700/80 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-pink-500 transition-colors">
+              <option value="F&amp;B / Beverage / Cafe" selected>F&amp;B / Cafe / အစားအသောက် &amp; အချိုရည်</option>
+              <option value="Skincare &amp; Beauty">Skincare &amp; အလှကုန်</option>
+              <option value="Fashion &amp; Streetwear">Fashion &amp; အဝတ်အထည် / ဖိနပ်</option>
+              <option value="Tech Gadgets &amp; Phones">Tech, ဖုန်း &amp; Electronic Gadgets</option>
+              <option value="Car Care &amp; Tyres">ကားတာယာ / Car Care &amp; ဆက်စပ်ပစ္စည်း</option>
+              <option value="Services &amp; Apps">Application / Education / ဝန်ဆောင်မှု</option>
+            </select>
+          </div>
+
+          <!-- Yangon Location Dropdown -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">ရိုက်ကူးမည့် ရန်ကုန်မြို့တွင်း တည်နေရာ</label>
+            <select id="ai-location" class="w-full bg-slate-950 border border-slate-700/80 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-pink-500 transition-colors">
+              <option value="လှည်းတန်း စင်တာ / ဂမုန်းပွင့် ရှေ့">လှည်းတန်း စင်တာ / ဂမုန်းပွင့် ရှေ့ (ကျောင်းသား &amp; လူငယ်စည်ကား)</option>
+              <option value="Time City / Junction Square">Time City / Junction Square (Mall &amp; Gen Z Lifestyle)</option>
+              <option value="မဟာဗန္ဓုလပန်းခြံ / ဆူးလေ">မဟာဗန္ဓုလပန်းခြံ / ဆူးလေ (လမ်းဘေး အမေးအဖြေ စုံစုံလင်လင်)</option>
+              <option value="အင်းယားကန်ဘောင် / ပြည်သူ့ရင်ပြင်">အင်းယားကန်ဘောင် / ပြည်သူ့ရင်ပြင် (Couple &amp; Chill Vibes)</option>
+              <option value="တာမွေ ညဈေး / သုဝဏ္ဏ Food Street">တာမွေ ညဈေး / သုဝဏ္ဏ Food Street (အစားအသောက် &amp; ညပိုင်း)</option>
+              <option value="ဒလသင်္ဘောဆိပ် / ရန်ကုန်ဘူတာကြီး">ဒလသင်္ဘောဆိပ် / ရန်ကုန်ဘူတာကြီး (Travel &amp; Vlog Style)</option>
+            </select>
+          </div>
+
+          <!-- Style Selection -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Content ပုံစံ &amp; လေယူလေသိမ်း</label>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <label class="flex items-center gap-2 p-2.5 bg-slate-950 rounded-lg border border-slate-800 cursor-pointer hover:border-pink-500/50">
+                <input type="radio" name="ai-style" value="Funny Street Q&amp;A" checked class="accent-pink-500">
+                <span>ရယ်စရာ Street Q&amp;A</span>
+              </label>
+              <label class="flex items-center gap-2 p-2.5 bg-slate-950 rounded-lg border border-slate-800 cursor-pointer hover:border-pink-500/50">
+                <input type="radio" name="ai-style" value="Speed Challenge Mini-game" class="accent-pink-500">
+                <span>ဆုကြေးပါ Mini-game</span>
+              </label>
+              <label class="flex items-center gap-2 p-2.5 bg-slate-950 rounded-lg border border-slate-800 cursor-pointer hover:border-pink-500/50">
+                <input type="radio" name="ai-style" value="Blind Taste / Touch Test" class="accent-pink-500">
+                <span>Blind Taste / Test</span>
+              </label>
+              <label class="flex items-center gap-2 p-2.5 bg-slate-950 rounded-lg border border-slate-800 cursor-pointer hover:border-pink-500/50">
+                <input type="radio" name="ai-style" value="Surprise Challenge" class="accent-pink-500">
+                <span>Surprise Challenge</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Generate Button -->
+          <button id="btn-generate-ai" onclick="generateAiContent()" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-pink-500 via-rose-500 to-indigo-600 hover:opacity-95 active:scale-[0.99] text-white font-bold text-sm shadow-lg shadow-pink-500/25 flex items-center justify-center gap-2 transition-all">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span>AI Script &amp; Idea ဖန်တီးမည်</span>
+          </button>
+        </div>
+
+        <!-- Output Display (Right 7 Cols) -->
+        <div class="lg:col-span-7 space-y-4">
+          <!-- Loading State Indicator -->
+          <div id="ai-loading" class="hidden bg-slate-900/90 border border-slate-800 rounded-2xl p-12 text-center space-y-4">
+            <div class="inline-block w-12 h-12 border-4 border-pink-500 border-t-transparent rounded-full animate-spin"></div>
+            <p class="text-sm font-semibold text-slate-200">AI မှ ရန်ကုန်လူငယ်ကြိုက် TikTok Script ကို ဖန်တီးနေပါသည်...</p>
+            <p class="text-xs text-slate-400">Viral Hook, Street Q&amp;A, Native Product Placement နှင့် Hashtags များ ထုတ်လုပ်နေပါသည်</p>
+          </div>
+
+          <!-- Result Container -->
+          <div id="ai-result" class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 space-y-5">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">AI Generated Production Blueprint</span>
+              </div>
+              <button onclick="copyGeneratedScript()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg border border-slate-700 flex items-center gap-1.5 transition-colors">
+                <i class="fa-regular fa-copy"></i> Copy Script
+              </button>
+            </div>
+
+            <!-- Hook Box -->
+            <div class="p-4 rounded-xl bg-pink-950/30 border border-pink-500/30">
+              <div class="text-xs font-bold text-pink-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                <i class="fa-solid fa-fire text-pink-400"></i> First 3 Seconds Viral Hook
+              </div>
+              <p id="res-hook" class="text-base md:text-lg font-bold text-white">
+                "လှည်းတန်းမှာ ကားမောင်းနေတဲ့ အစ်ကိုကြီးတွေကို တာယာနင်းဖတ်တိုင်းခိုင်းပြီး အသစ်အခမဲ့လဲပေးမယ့် Challenge!"
+              </p>
+            </div>
+
+            <!-- Street Interaction Breakdown -->
+            <div class="space-y-3">
+              <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Street Interaction Breakdown</h4>
+
+              <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
+                <span class="text-xs font-bold text-cyan-400">၁။ Street Question / Opening</span>
+                <p id="res-question" class="text-sm text-slate-200">
+                  "အစ်ကို... ရန်ကုန်မှာ ကားမောင်းရတာ အဆိုးဆုံး လမ်းချိုင့်ခွက် ဘယ်လမ်းမှာ ရှိလဲ? ဖြေနိုင်ရင် လက်ဆောင်ပေးမယ်!"
+                </p>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
+                <span class="text-xs font-bold text-amber-400">၂။ Mini-game Challenge</span>
+                <p id="res-game" class="text-sm text-slate-200">
+                  "၅ စက္ကန့်အတွင်း ကားနဲ့ပတ်သက်တဲ့ ပစ္စည်း ၄ မျိုး အမြန်ဆုံး အော်ပြောရမယ့် Speed Challenge!"
+                </p>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
+                <span class="text-xs font-bold text-emerald-400">၃။ Native Product Placement (ကြော်ညာပုံစံ)</span>
+                <p id="res-placement" class="text-sm text-slate-200">
+                  အနိုင်ရသူအား ကားတာယာလဲလှယ်ခွင့် Discount Voucher သို့မဟုတ် ကားသန့်ရှင်းရေး Tool Box ကို လက်ဆောင်အဖြစ် ပေးအပ်ကာ စစ်မှန်သော အပြုံး Reaction ရယူခြင်း။
+                </p>
+              </div>
+            </div>
+
+            <!-- Host Script & Shot List -->
+            <div class="space-y-2">
+              <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Host Dialogue &amp; Shot List</h4>
+              <div id="res-dialogue" class="text-xs md:text-sm text-slate-300 bg-slate-950 p-4 rounded-xl border border-slate-800 leading-relaxed space-y-2">
+                <p><strong class="text-pink-400">[0:00 - 0:03]:</strong> Host လှည်းတန်းလမ်းမပေါ်တွင် မိုက်နှင့် တာယာလေပေါင်တိုင်းကိရိယာ ကိုင်ကာ စိတ်လှုပ်ရှားဖွယ် အော်ပြောမည်။</p>
+                <p><strong class="text-cyan-400">[0:04 - 0:18]:</strong> ကားရပ်ထားသော ယာဉ်မောင်းများကို မေးခွန်းမေးမြန်းပြီး ရယ်မောဖွယ် အဖြေများကို အမြန်ဖြတ်ညှပ်ပြသမည်။</p>
+                <p><strong class="text-amber-400">[0:19 - 0:38]:</strong> Mini-game စတင်ဆော့ကစားပြီး အနိုင်ရသူအား ဆုလက်ဆောင် ပေးအပ်မည်။</p>
+                <p><strong class="text-emerald-400">[0:39 - 0:50]:</strong> တာယာဆိုင်၏ တည်နေရာနှင့် Discount ရယူနိုင်မည့်နည်းလမ်းကို Host က သဘာဝကျကျ အဆုံးသတ်ပြောဆိုမည်။</p>
+              </div>
+            </div>
+
+            <!-- Recommended Hashtags -->
+            <div>
+              <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Recommended Hashtags</span>
+              <div id="res-tags" class="flex flex-wrap gap-1.5 mt-2">
+                <span class="text-xs bg-slate-800 text-slate-300 px-2.5 py-1 rounded-md">#ကားတာယာ</span>
+                <span class="text-xs bg-slate-800 text-slate-300 px-2.5 py-1 rounded-md">#StreetInterview</span>
+                <span class="text-xs bg-slate-800 text-slate-300 px-2.5 py-1 rounded-md">#TikTokMyanmar</span>
+                <span class="text-xs bg-slate-800 text-slate-300 px-2.5 py-1 rounded-md">#YangonDrivers</span>
+                <span class="text-xs bg-slate-800 text-slate-300 px-2.5 py-1 rounded-md">#CarCareYangon</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 border border-slate-700 text-white px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 transition-opacity duration-300 opacity-0 pointer-events-none z-50">
+    <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+    <span id="toast-msg" class="text-sm font-medium">အောင်မြင်စွာ ကူးယူပြီးပါပြီ!</span>
+  </div>
+
+  <script>
+    // Navigation & Page Switching Function
+    function switchPage(pageId) {
+      const pages = ['strategy', 'calendar', 'lab'];
+      pages.forEach(p => {
+        const btn = document.getElementById(`tab-${p}`);
+        const sec = document.getElementById(`page-${p}`);
+        if (p === pageId) {
+          btn.className = "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 bg-blue-600 text-white shadow-sm";
+          sec.classList.remove('hidden');
+        } else {
+          btn.className = "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-300 hover:text-white hover:bg-slate-800/60";
+          sec.classList.add('hidden');
+        }
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Slide Carousel logic (7 Slides)
+    let currentSlide = 1;
+    const totalSlides = 7;
+
+    function showSlide(num) {
+      if (num < 1) num = totalSlides;
+      if (num > totalSlides) num = 1;
+      currentSlide = num;
+
+      for (let i = 1; i <= totalSlides; i++) {
+        const el = document.getElementById(`slide-${i}`);
+        if (el) {
+          if (i === currentSlide) {
+            el.classList.remove('hidden');
+          } else {
+            el.classList.add('hidden');
+          }
+        }
+      }
+      document.getElementById('current-slide-num').innerText = currentSlide;
+    }
+
+    function nextSlide() {
+      showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentSlide - 1);
+    }
+
+    // Keyboard support for Slide Presentation
+    document.addEventListener('keydown', (e) => {
+      const strategySec = document.getElementById('page-strategy');
+      if (strategySec && !strategySec.classList.contains('hidden')) {
+        if (e.key === 'ArrowRight' || e.key === 'Space') {
+          nextSlide();
+        } else if (e.key === 'ArrowLeft') {
+          prevSlide();
+        }
+      }
+    });
+
+    // 30-Day Calendar Data Structure
+    const calendarData = [
+      { day: 1, stage: "Awareness", type: "Street Q&A", loc: "လှည်းတန်း စင်တာရှေ့", idea: "'Gen Z တွေ လက်ရှိ Ex ကို ဖုန်းခေါ်ပြီး တစ်ခွန်းပဲ ပြောရမယ်ဆိုရင်?'" },
+      { day: 2, stage: "Awareness", type: "Mini-game", loc: "မဟာဗန္ဓုလပန်းခြံ", idea: "'၃ စက္ကန့်အတွင်း က အက္ခရာနဲ့ စတဲ့ အစားအသောက် ၅ မျိုးပြောပါ' (ငွေသား ၁ သောင်းဆု)" },
+      { day: 3, stage: "Interest", type: "Trend Reaction", loc: "မြေနီကုန်း Dagon Centre", idea: "'ရန်ကုန်မှာ အလန်းဆုံး OOTD (Outfit) ဝတ်ထားသူ ၃ ယောက်ကို လိုက်ရှာမယ်'" },
+      { day: 4, stage: "Awareness", type: "Street Q&A", loc: "တက္ကသိုလ်ရိပ်သာလမ်းသစ်", idea: "'ဒီနေ့ ရက်စွဲကို မကြည့်ဘဲ ချက်ချင်းပြောနိုင်ရင် လက်ဆောင်ပေးမယ်'" },
+      { day: 5, stage: "Interest", type: "Mini-game", loc: "Time City", idea: "'မျက်စိမှိတ်ပြီး အသံ/အနံ့နဲ့ ဘာပစ္စည်းလဲ ခန့်မှန်းရတဲ့ Challenge' (FMCG Mock-up)" },
+      { day: 6, stage: "Awareness", type: "Funny Q&A", loc: "အင်းယားကန်ဘောင်", idea: "'ရည်းစားနဲ့ ပထမဆုံး Date မှာ ဘယ်သူ ရှင်းသင့်လဲ? (Boy vs Girl အမြင်)'" },
+      { day: 7, stage: "Interest", type: "Mini-game", loc: "လှည်းတန်း ဂမုန်းပွင့်ရှေ့", idea: "'Bottle Flip ၃ ကြိမ်ဆက်တိုက် အောင်ရင် ကံစမ်းမဲ နှိုက်ခွင့်'" },
+      { day: 8, stage: "Conversion", type: "Native Mock Ad", loc: "မြို့ထဲ ၃၉ လမ်း (လမ်း ၄၀)", idea: "'လမ်းဘေးမှာတွေ့တဲ့ မိတ်ဆွေကို နာမည်ကြီး Bubble Tea အလကားတိုက်ပြီး Review မေးမယ်'" },
+      { day: 9, stage: "Awareness", type: "Street Q&A", loc: "Junction City", idea: "'ဖုန်းထဲက နောက်ဆုံးရိုက်ထားတဲ့ ဓာတ်ပုံကို ပြရဲလား?'" },
+      { day: 10, stage: "Interest", type: "Mini-game", loc: "ပြည်သူ့ရင်ပြင်", idea: "'Rock, Paper, Scissors (ကျောက်၊ စက္ကူ၊ ကတ်ကြေး) Production Team နဲ့ နိုင်အောင်ဆော့ပါ'" },
+      { day: 11, stage: "Awareness", type: "Yangon Trend", loc: "သုဝဏ္ဏ Food Street", idea: "'ကျပ် ၅ သောင်းပေးမယ်၊ ၁၀ မိနစ်အတွင်း ဒီလမ်းထဲမှာ အကုန်သုံးရမယ်'" },
+      { day: 12, stage: "Interest", type: "Q&A Challenge", loc: "လှည်းတန်း ဘူတာရုံနား", idea: "'ဒီမေးခွန်း ၃ ခုလုံး မှန်ရင် လွယ်အိတ်ထဲက အရာတစ်ခုကို အလကားပေးမယ်'" },
+      { day: 13, stage: "Conversion", type: "Sponsored Video #1", loc: "Cafe ဆိုင်တစ်ဆိုင်", idea: "(ပထမဆုံး Brand/Cafe Sponsor) 'ဆိုင်ရဲ့ Signature Menu ကို လူစိမ်း ၂ ယောက် Blind Taste Test'" },
+      { day: 14, stage: "Awareness", type: "Fun Interview", loc: "စမ်းချောင်း ဗဟိုလမ်း", idea: "'မင်းရဲ့ အဆိုးဆုံး First Date အတွေ့အကြုံက ဘာလဲ?'" },
+      { day: 15, stage: "Interest", type: "Mini-game", loc: "People's Park", idea: "'Straw နဲ့ ပဲစေ့ ၅ စေ့ကို စက္ကန့် ၃၀ အတွင်း စုပ်ပြောင်းပါ'" },
+      { day: 16, stage: "Advocacy", type: "BTS / Team Vlog", loc: "Production Studio", idea: "'Street Interview ရိုက်တုန်းက အလွဲများနှင့် Bloopers (B-roll)'" },
+      { day: 17, stage: "Awareness", type: "Street Q&A", loc: "ကန်တော်ကြီး ပန်းခြံ", idea: "'မြန်မာစကားပုံ ဆက်စပ်စကားလုံး ဖြည့်ခိုင်းခြင်း'" },
+      { day: 18, stage: "Conversion", type: "Sponsored Video #2", loc: "Fashion Shop ရှေ့", idea: "'စက္ကန့် ၆၀ အတွင်း Budget ၃ သောင်းနဲ့ Outfit ရွေးရမယ့် Fashion Challenge'" },
+      { day: 19, stage: "Interest", type: "Mini-game", loc: "Hledan Centre", idea: "'ရယ်ရင်ရှုံး (Don't Laugh Challenge) - Production Team က လူရွှင်တော်စကားပြောမယ်'" },
+      { day: 20, stage: "Awareness", type: "Yangon Lifestyle", loc: "တာမွေ ညဈေး", idea: "'ဒီညဈေးမှာ အစားအသောက် အကြိုက်ဆုံး ၁ ခုကို လမ်းသွားလမ်းလာတွေ ညွှန်ပြခိုင်းခြင်း'" },
+      { day: 21, stage: "Interest", type: "Mini-game", loc: "မြေနီကုန်း Junction Square", idea: "'Shoe/Sneaker Check - ဖိနပ်အသန့်ဆုံးလူကို Sneaker Cleaner Gift ပေးမယ်'" },
+      { day: 22, stage: "Conversion", type: "Sponsored Video #3", loc: "Skincare / Cosmetics", idea: "'အသားအရေ ကောင်းတဲ့သူတွေကို လိုက်ရှာပြီး Daily Skincare Routine မေးမြန်းခြင်း'" },
+      { day: 23, stage: "Awareness", type: "Street Q&A", loc: "မြို့ထဲ ဆူးလေ", idea: "'ရန်ကုန်မှာ အကြိုက်ဆုံး Bus Line နံပါတ်က ဘာလဲ? ဘာကြောင့်လဲ?'" },
+      { day: 24, stage: "Interest", type: "Mini-game", loc: "Time City", idea: "'Thumb Wrestling (လက်မဆော့ပြိုင်ပွဲ) - Host ကို နိုင်ရင် လက်ဆောင်'" },
+      { day: 25, stage: "Advocacy", type: "Mini Travel Vlog", loc: "ရန်ကုန် - ဒလ သင်္ဘောပေါ်", idea: "'ဒလဘက် ၁ ရက်တာ လည်ပတ်ရင်း သင်္ဘောပေါ်က ခရီးသည်တွေနဲ့ အမေးအဖြေ'" },
+      { day: 26, stage: "Conversion", type: "Sponsored Video #4", loc: "Food & Beverage Brand", idea: "'Energy Drink / အအေးဘူး အသစ်ကို လမ်းပေါ်မှာ သောက်ခိုင်းပြီး First Impression မေးခြင်း'" },
+      { day: 27, stage: "Awareness", type: "Funny Challenge", loc: "လှည်းတန်း စင်တာ", idea: "'မရင်းနှီးတဲ့သူကို compliment (ချီးကျူးစကား) သွားပြောနိုင်ရင် ဆုပေးမယ်'" },
+      { day: 28, stage: "Interest", type: "Mini-game", loc: "Inya Lake", idea: "'Ping Pong ဘောလုံးကို ခွက်ထဲ ဝင်အောင် ပစ်သွင်းခြင်း (Beer Pong style)'" },
+      { day: 29, stage: "Advocacy", type: "Milestone Celebration", loc: "Yangon City Center", idea: "'Follower ၁၀K ပြည့်အထိမ်းအမှတ် လမ်းပေါ်က Viewers တွေကို Surprise Gift ပေးခြင်း'" },
+      { day: 30, stage: "Advocacy", type: "Roadmap Teaser", loc: "ရန်ကုန် ဘူတာကြီးနား", idea: "'နောက်တစ်ခေါက် ဘယ်မြို့ကို သွားမေးရမလဲ? မန္တလေးလား၊ တောင်ကြီးလား Comment မှာ ရေးခဲ့ပါ'" }
+    ];
+
+    function renderCalendar(filter = 'all') {
+      const container = document.getElementById('calendar-cards-container');
+      container.innerHTML = '';
+
+      const badgeStyles = {
+        Awareness: 'bg-pink-500/10 text-pink-400 border-pink-500/20',
+        Interest: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
+        Conversion: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
+        Advocacy: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
+      };
+
+      calendarData.forEach(item => {
+        if (filter !== 'all' && item.stage !== filter) return;
+
+        const card = document.createElement('div');
+        card.className = "bg-slate-900/80 border border-slate-800 rounded-2xl p-4 hover:border-slate-700 transition-all flex flex-col justify-between";
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-white bg-slate-800 px-2.5 py-1 rounded-md">Day ${item.day}</span>
+              <span class="text-[11px] font-bold px-2 py-0.5 rounded-full border ${badgeStyles[item.stage] || 'text-slate-400 border-slate-700'}">${item.stage}</span>
+            </div>
+            <div class="text-xs font-semibold text-slate-400 mb-1 flex items-center gap-1">
+              <i class="fa-solid fa-film text-slate-500"></i> ${item.type}
+            </div>
+            <p class="text-sm text-slate-200 font-medium leading-relaxed my-2">${item.idea}</p>
+          </div>
+          <div class="text-xs text-slate-400 pt-3 border-t border-slate-800/80 flex items-center gap-1.5 mt-2">
+            <i class="fa-solid fa-location-dot text-pink-400"></i>
+            <span class="truncate">${item.loc}</span>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function filterCalendar(category) {
+      document.querySelectorAll('.cal-filter-btn').forEach(btn => {
+        if (btn.dataset.filter === category) {
+          btn.className = "cal-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-600 text-white";
+        } else {
+          btn.className = "cal-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-800 text-slate-400 hover:text-white";
+        }
+      });
+      renderCalendar(category);
+    }
+
+    // AI Content Lab Generator
+    async function generateAiContent() {
+      const productName = document.getElementById('ai-product-name').value.trim() || "ကားတာယာ / Car Care";
+      const category = document.getElementById('ai-category').value;
+      const location = document.getElementById('ai-location').value;
+      const style = document.querySelector('input[name="ai-style"]:checked')?.value || "Funny Street Q&A";
+
+      const loadingBox = document.getElementById('ai-loading');
+      const resultBox = document.getElementById('ai-result');
+
+      loadingBox.classList.remove('hidden');
+      resultBox.classList.add('hidden');
+
+      const systemPrompt = `You are an elite TikTok content director and viral strategist based in Yangon, Myanmar. 
+Generate a practical, street-smart TikTok video concept for a Yangon-based street production team. 
+The concept must organically place the client's product without looking like a boring traditional TV commercial.
+Format your response as a valid JSON object with the keys:
+{
+  "hook": "string (viral 3-sec hook in Burmese language)",
+  "question": "string (engaging street question in Burmese)",
+  "game": "string (quick mini game challenge in Burmese)",
+  "placement": "string (how to naturally integrate the product as a prize or test in Burmese)",
+  "dialogue": [
+    "string (step 1 with timestamps)",
+    "string (step 2 with timestamps)",
+    "string (step 3 with timestamps)",
+    "string (step 4 with timestamps)"
+  ],
+  "hashtags": ["tag1", "tag2", "tag3", "tag4", "tag5"]
+}`;
+
+      const userPrompt = `Brand/Product Name: "${productName}"
+Category: "${category}"
+Location in Yangon: "${location}"
+Style/Format: "${style}"
+
+Create a viral TikTok street interview script and native brand placement in Burmese language suitable for Yangon youths and target customers.`;
+
+      const apiKey = "";
+      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+      try {
+        const payload = {
+          contents: [{ parts: [{ text: userPrompt }] }],
+          systemInstruction: { parts: [{ text: systemPrompt }] },
+          generationConfig: {
+            responseMimeType: "application/json"
+          }
+        };
+
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await response.json();
+        const jsonText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+        
+        if (jsonText) {
+          const parsed = JSON.parse(jsonText);
+          populateAiResults(parsed, productName);
+        } else {
+          fallbackAiGeneration(productName, category, location, style);
+        }
+      } catch (err) {
+        fallbackAiGeneration(productName, category, location, style);
+      } finally {
+        loadingBox.classList.add('hidden');
+        resultBox.classList.remove('hidden');
+      }
+    }
+
+    function populateAiResults(data, productName) {
+      document.getElementById('res-hook').innerText = `"${data.hook}"`;
+      document.getElementById('res-question').innerText = data.question;
+      document.getElementById('res-game').innerText = data.game;
+      document.getElementById('res-placement').innerText = data.placement;
+
+      const dialogueBox = document.getElementById('res-dialogue');
+      dialogueBox.innerHTML = '';
+      if (Array.isArray(data.dialogue)) {
+        data.dialogue.forEach(d => {
+          const p = document.createElement('p');
+          p.className = "text-slate-300";
+          p.innerText = d;
+          dialogueBox.appendChild(p);
+        });
+      }
+
+      const tagsContainer = document.getElementById('res-tags');
+      tagsContainer.innerHTML = '';
+      const tags = data.hashtags || ['TikTokMyanmar', 'StreetInterview', 'YangonVibes', productName.replace(/\s+/g, '')];
+      tags.forEach(t => {
+        const span = document.createElement('span');
+        span.className = "text-xs bg-slate-800 text-slate-300 px-2.5 py-1 rounded-md";
+        span.innerText = t.startsWith('#') ? t : `#${t}`;
+        tagsContainer.appendChild(span);
+      });
+      showToast("AI Script အသစ် ဖန်တီးပြီးပါပြီ!");
+    }
+
+    function fallbackAiGeneration(productName, category, location, style) {
+      const fallback = {
+        hook: `${location} မှာ တွေ့တဲ့လူတိုင်းကို ${productName} နဲ့ စိန်ခေါ်မယ့် အပျော်ရွှင်ဆုံး Street Challenge!`,
+        question: `မင်္ဂလာပါခင်ဗျာ... တစ်ခုလောက်မေးချင်လို့ပါ။ ${category} နဲ့ပတ်သက်ပြီး ကိုယ်တိုင် အမှတ်တရ အဖြစ်ဆုံး အလွဲတစ်ခုလောက် ပြောပြနိုင်မလား?`,
+        game: `စက္ကန့် ၃၀ အတွင်း ${productName} နဲ့ပတ်သက်တဲ့ စကားလုံး ၃ လုံး မမှားအောင် အမြန်ဆုံး ပြောဆိုပြိုင်ပွဲ!`,
+        placement: `အနိုင်ရရှိသူအား ${productName} လက်ဆောင် သို့မဟုတ် Voucher ကို ပေးအပ်ပြီး ချက်ချင်း စစ်မှန်သော First Impression Reaction ရယူပြသခြင်း။`,
+        dialogue: [
+          "[0:00 - 0:03] Host မှ Location ရှေ့တွင် Product ကို ကိုင်ကာ စိတ်လှုပ်ရှားဖွယ် Viral Hook အော်ဟစ်ခြင်း။",
+          "[0:04 - 0:15] လမ်းသွားလမ်းလာ လူငယ်များကို လိုက်လံ မေးမြန်းခြင်းနှင့် ရယ်မောဖွယ် တုံ့ပြန်မှုများ။",
+          "[0:16 - 0:35] Mini-game စတင်ပြီး အနိုင်/အရှုံး အပြန်အလှန် ပျော်ရွှင်ဖွယ် တည်းဖြတ်မှု။",
+          "[0:36 - 0:45] Brand ပစ္စည်းကို ဆုအဖြစ်ပေးအပ်ပြီး Follower များအတွက် Bio Link CTA ထည့်သွင်းခြင်း။"
+        ],
+        hashtags: ["YangonProduction", "TikTokMyanmar", "StreetQandA", "YangonTrend", productName.replace(/\s+/g, '').replace(/[\/\-\&]/g, '')]
+      };
+      populateAiResults(fallback, productName);
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-msg').innerText = msg;
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 2500);
+    }
+
+    function copyGeneratedScript() {
+      const hook = document.getElementById('res-hook').innerText;
+      const q = document.getElementById('res-question').innerText;
+      const g = document.getElementById('res-game').innerText;
+      const p = document.getElementById('res-placement').innerText;
+      const fullText = `[Viral Hook]:\n${hook}\n\n[Street Question]:\n${q}\n\n[Mini-game]:\n${g}\n\n[Native Placement]:\n${p}`;
+
+      const el = document.createElement('textarea');
+      el.value = fullText;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      showToast("Script အားလုံးကို Clipboard သို့ ကူးယူပြီးပါပြီ!");
+    }
+
+    window.onload = function() {
+      renderCalendar('all');
+      showSlide(1);
+    };
+  </script>
+</body>
+</html>
